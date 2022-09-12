@@ -26,7 +26,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class LanternaActivity extends AppCompatActivity {
 
     private TextView statusLanterna;
-    private ToggleButton toggleButton;
     private ImageButton imageButtonOnOffLantern;
     private ConstraintLayout btntoggle_view;
     private CameraManager cameraManager;
@@ -42,12 +41,8 @@ public class LanternaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_button_toggle);
-        btntoggle_view = (ConstraintLayout) findViewById(R.id.activityToggleButtonId);
-        statusLanterna = (TextView)findViewById(R.id.textView);
         imageButtonOnOffLantern = (ImageButton)findViewById(R.id.imageButton_on_lantern);
-        toggleButton = findViewById(R.id.toggleButton01);
-        btntoggle_view.setBackgroundColor(Color.BLACK);
-        statusLanterna.setTextColor(Color.BLACK);
+        //toggleButton = findViewById(R.id.toggleButton01);
         cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE); // instancio o gerenciador de camera
         v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         kabum = (VideoView) findViewById(R.id.kabum);
@@ -56,21 +51,17 @@ public class LanternaActivity extends AppCompatActivity {
         kabum.setVideoURI(u);
 
         //alteraCorFundo(btntoggle_view);
-        ligarLanterma(btntoggle_view);
+        ligarLanterma();
 
     }
 
-    public void ligarLanterma(ConstraintLayout main_view)
+    public void ligarLanterma()
     {
         imageButtonOnOffLantern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onOffLanterna = !onOffLanterna;
                 if (onOffLanterna) { // liga o led e altera a cor de  fundo
-                    // The toggle is enabled
-                    statusLanterna.setText("Lanterna Ligada");
-                    showMessage("Toggle buttom is on");
-                    statusLanterna.setTextColor(Color.BLACK);
                     //main_view.setBackgroundColor(Color.WHITE);
                     if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))
                     {
@@ -95,7 +86,7 @@ public class LanternaActivity extends AppCompatActivity {
                         view.setVisibility(View.INVISIBLE);
                         imageButtonOnOffLantern = (ImageButton)findViewById(R.id.imageButton_off_lantern);
                         imageButtonOnOffLantern.setVisibility(View.VISIBLE);
-                        ligarLanterma(btntoggle_view);
+                        ligarLanterma();
 
                     }else
                     {
@@ -104,26 +95,29 @@ public class LanternaActivity extends AppCompatActivity {
 
 
                 } else {
-                    // The toggle is disabled
-                    showMessage("Toggle buttom is off");
-                    statusLanterna.setText("Lanterna Desligada");
-                    statusLanterna.setTextColor(Color.WHITE);
-                    //main_view.setBackgroundColor(Color.BLACK);
+                    // The flag is disabled
+
                     try {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                                && getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
                             String cameraId = cameraManager.getCameraIdList()[0];
                             cameraManager.setTorchMode(cameraId,false);
+                            showMessage("Lanterna desligada");
+                            view.setVisibility(View.INVISIBLE);
+                            imageButtonOnOffLantern = (ImageButton)findViewById(R.id.imageButton_on_lantern);
+                            imageButtonOnOffLantern.setVisibility(View.VISIBLE);
+                            ligarLanterma();
+                            kabum.stopPlayback();
+                            kabum.setVisibility(View.INVISIBLE);
+                        }else
+                        {
+                            Toast.makeText(LanternaActivity.this, "Esse dispositivo não possui flash", Toast.LENGTH_SHORT).show();
                         }
                     } catch (CameraAccessException e) {
                         e.printStackTrace();
                     }
 
-                    view.setVisibility(View.INVISIBLE);
-                    imageButtonOnOffLantern = (ImageButton)findViewById(R.id.imageButton_on_lantern);
-                    imageButtonOnOffLantern.setVisibility(View.VISIBLE);
-                    ligarLanterma(btntoggle_view);
-                    kabum.stopPlayback();
-                    kabum.setVisibility(View.INVISIBLE);
+
                 }
             }
         });
