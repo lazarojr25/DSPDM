@@ -1,18 +1,11 @@
 package br.com.dspdm.quixada.ufc;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         botaoIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(MainActivity.this, ButtonToggleActivity.class);
+                Intent in = new Intent(MainActivity.this, LanternaActivity.class);
                 startActivity(in);
             }
         });
