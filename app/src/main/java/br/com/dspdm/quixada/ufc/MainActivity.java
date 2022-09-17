@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager2 = findViewById(R.id.viewpager);
 
 
+
         VPAdapter vpAdapter = new VPAdapter(this );
 
         vpAdapter.addFragment(new Fragment1() , "Concluidos recentemente");
@@ -47,8 +48,9 @@ public class MainActivity extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager2,
                 (tab, position) -> tab.setText(vpAdapter.getFragmentTitle(position))
         ).attach();
-
-        //https://www.youtube.com/watch?v=ASQIvPwQffg&ab_channel=PenguinCoders
+        tabLayout.getTabAt(1).select();
+        getSupportActionBar().hide();
+        //
         //chamarSegundaTela();
     }
 

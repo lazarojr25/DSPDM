@@ -4,38 +4,32 @@ import java.util.Date;
 
 public class Tarefa
 {
-    Integer id;
+    private static int geradorIds = 0;
+
+    int id,status;
     String nomeTarefa;
-    String status;
+    String descricaoTarefa;
+    String statusTarefa;
     Date dataInicio;
     Date dataTermino;
 
-
-    public Tarefa(String nomeTarefa, String status, Date dataInicio, Date dataTermino) {
+    public Tarefa(String nomeTarefa, String descricaoTarefa, String statusTarefa, Date dataInicio, Date dataTermino) {
         this.nomeTarefa = nomeTarefa;
-        this.status = status;
+        this.descricaoTarefa = descricaoTarefa;
+        this.statusTarefa = statusTarefa;
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
     }
 
-    public Integer getId() {
-        return id;
+    public Tarefa() {
+
     }
 
-
-    public String getNomeTarefa() {
-        return nomeTarefa;
-    }
-
-    public void setNomeTarefa(String nomeTarefa) {
-        this.nomeTarefa = nomeTarefa;
-    }
-
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -55,14 +49,41 @@ public class Tarefa
         this.dataTermino = dataTermino;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getNomeTarefa() {
+        return nomeTarefa;
+    }
+
+    public void setNomeTarefa(String nomeTarefa) {
+        this.nomeTarefa = nomeTarefa;
+    }
+
+    public String getDescricaoTarefa() {
+        return descricaoTarefa;
+    }
+
+    public void setDescricaoTarefa(String descricaoTarefa) {
+        this.descricaoTarefa = descricaoTarefa;
+    }
+
+    public String gettSatusTarefa() {
+        return statusTarefa;
+    }
+
+    public void setStatusTarefa(String statusTarefa) {
+        this.statusTarefa = statusTarefa;
+    }
+
     @Override
     public String toString() {
         return "Tarefa{" +
                 "id=" + id +
                 ", nomeTarefa='" + nomeTarefa + '\'' +
-                ", status='" + status + '\'' +
-                ", dataInicio=" + dataInicio +
-                ", dataTermino=" + dataTermino +
+                ", statusTarefa=' "+ statusTarefa+'\''+
+                ", descricaoTarefa='" + descricaoTarefa + '\'' +
                 '}';
     }
 }

@@ -8,6 +8,6 @@ public class acticity_item_tarefa extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_acticity_item_tarefa);
+        setContentView(R.layout.activity_activity_item_tarefa);
     }
 }
