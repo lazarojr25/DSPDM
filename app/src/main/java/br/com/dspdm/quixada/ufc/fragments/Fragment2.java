@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,12 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.dspdm.quixada.ufc.DialogCloseListener;
-import br.com.dspdm.quixada.ufc.MainActivity;
 import br.com.dspdm.quixada.ufc.R;
+import br.com.dspdm.quixada.ufc.RecyclerItemTouchHelper;
 import br.com.dspdm.quixada.ufc.armazenamento.BaseDadosTarefa;
 import br.com.dspdm.quixada.ufc.model.Tarefa;
 import br.com.dspdm.quixada.ufc.utils.AddTarefa;
-import br.com.dspdm.quixada.ufc.view.CustomAdapter;
+import br.com.dspdm.quixada.ufc.Adapter.CustomAdapter;
 
 
 public class Fragment2 extends Fragment implements DialogCloseListener {
@@ -40,7 +41,7 @@ public class Fragment2 extends Fragment implements DialogCloseListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
+        System.out.println("ON CREATE VIRE FRAGMENT 02");
 
         return inflater.inflate(R.layout.fragment_2, container, false);
 
@@ -56,14 +57,14 @@ public class Fragment2 extends Fragment implements DialogCloseListener {
         customAdapter = new CustomAdapter(this.getActivity());
         tarefaRecycleView.setAdapter(customAdapter);
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(customAdapter));
+        itemTouchHelper.attachToRecyclerView(tarefaRecycleView);
+
         fab = getView().findViewById(R.id.fabTask);
 
         Tarefa tarefa = new Tarefa();
         tarefa.setNomeTarefa("Isso é uma tarefa teste");
         tarefa.setStatus(0);
-        BaseDadosTarefa.getList().add(tarefa);
-        BaseDadosTarefa.getList().add(tarefa);
-        BaseDadosTarefa.getList().add(tarefa);
         BaseDadosTarefa.getList().add(tarefa);
         BaseDadosTarefa.getList().add(tarefa);
         System.out.println("LISTA DA CLASSE "+BaseDadosTarefa.getList());

@@ -1,5 +1,6 @@
-package br.com.dspdm.quixada.ufc.view;
+package br.com.dspdm.quixada.ufc.Adapter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.dspdm.quixada.ufc.R;
+import br.com.dspdm.quixada.ufc.armazenamento.BaseDadosTarefa;
 import br.com.dspdm.quixada.ufc.model.Tarefa;
 import br.com.dspdm.quixada.ufc.utils.AddTarefa;
 
@@ -26,10 +28,16 @@ public class CustomAdapter extends  RecyclerView.Adapter<CustomAdapter.ViewHolde
      * (custom ViewHolder).
      */
 
+    public Context getContext()
+    {
+        return activit;
+    }
+
     public void deleteItem(int position)
     {
         //Tarefa item = localDataSet.get(position);
         localDataSet.remove(position);
+        BaseDadosTarefa.getList().remove(position);
         notifyItemRemoved(position);
     }
 

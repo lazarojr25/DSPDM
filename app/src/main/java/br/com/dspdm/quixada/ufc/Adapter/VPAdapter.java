@@ -1,4 +1,4 @@
-package br.com.dspdm.quixada.ufc;
+package br.com.dspdm.quixada.ufc.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

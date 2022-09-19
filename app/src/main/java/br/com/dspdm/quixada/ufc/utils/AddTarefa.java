@@ -28,6 +28,7 @@ public class AddTarefa  extends BottomSheetDialogFragment
 {
     private EditText newTaskText;
     private Button newTaskSaveButton;
+    private Bundle bundle;
 
     public static AddTarefa newInstance()
     {
@@ -38,6 +39,7 @@ public class AddTarefa  extends BottomSheetDialogFragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NORMAL, R.style.DialogStyle);
+        bundle = this.getArguments();
     }
 
     @Override
@@ -52,34 +54,37 @@ public class AddTarefa  extends BottomSheetDialogFragment
         super.onViewCreated(view, savedInstanceState);
         newTaskText = getView().findViewById(R.id.novaTaskText);
         newTaskSaveButton = getView().findViewById(R.id.novaTarefaButton);
+        System.out.println("ON VIEW CREATED");
 
         boolean isUpdate = false;
-        final Bundle bundle = getArguments();
-        if(bundle != null){
-            isUpdate = true;
-            String task = bundle.getString("task");
-            newTaskText.setText(task);
+        Bundle bundle = new Bundle();
+        bundle = this.getArguments();
+        System.out.println("BUNDLE: "+bundle);
+            String task = newTaskText.getText().toString();
+            //newTaskText.setText(task);
             if(task.length()>0)
             {
-                newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_200));
             }
             newTaskText.addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
+                {
+                    System.out.println("ON BEFORE CREATED");
                 }
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     if(charSequence.toString().equals(""))
                     {
+                        System.out.println("CHAT ON CHANGE");
                         newTaskSaveButton.setEnabled(false);
                         newTaskSaveButton.setTextColor(Color.GRAY);
                     }
                     else
                     {
                         newTaskSaveButton.setEnabled(true);
-                        newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                        newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_200));
                     }
                 }
 
@@ -90,25 +95,20 @@ public class AddTarefa  extends BottomSheetDialogFragment
             });
 
             boolean finalIsUpdate = isUpdate;
+            Bundle finalBundle = bundle;
             newTaskSaveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    System.out.println("ENTROU NO ONCLICK DE SALVAR");
                     String text = newTaskText.getText().toString();
-                    if(finalIsUpdate)
-                    {
-                        BaseDadosTarefa.getList().get(bundle.getInt("id")).setNomeTarefa(text);
-
-                    }
-                    else
-                    {
                         Tarefa task = new Tarefa();
                         task.setNomeTarefa(text);
                         task.setStatus(0);
-                    }
+                        BaseDadosTarefa.getList().add(task);
                     dismiss();
                 }
             });
-        }
+
     }
 
     @Override
@@ -119,4 +119,6 @@ public class AddTarefa  extends BottomSheetDialogFragment
             ((DialogCloseListener)activity).handleDialogClose(dialog);
         }
     }
+
+
 }
