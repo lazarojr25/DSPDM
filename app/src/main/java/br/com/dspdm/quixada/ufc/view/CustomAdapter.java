@@ -26,6 +26,14 @@ public class CustomAdapter extends  RecyclerView.Adapter<CustomAdapter.ViewHolde
      * (custom ViewHolder).
      */
 
+    public void deleteItem(int position)
+    {
+        //Tarefa item = localDataSet.get(position);
+        localDataSet.remove(position);
+        notifyItemRemoved(position);
+    }
+
+
     public void editItem(int position)
     {
         Tarefa item = localDataSet.get(position);
