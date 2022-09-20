@@ -5,12 +5,157 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Fragment1">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="40dp"/>
 
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:layout_marginTop="50dp">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+         <TextView
+             android:id="@+id/txtViewExemplo"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:text="Exemplo Text View"
+             android:textStyle="bold"
+             android:textSize="25dp"
+             android:gravity="center"/>
+
+
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="25dp">
+
+
+         <EditText
+             android:id="@+id/edtExemplo"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:ems="10"
+             android:hint="Digite algo para alterar o text view"
+             android:inputType="textPersonName" />
+
+         <Button
+             android:id="@+id/buttonEditText"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:text="alterar"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginTop="25dp">
+
+
+         <AutoCompleteTextView
+             android:id="@+id/autoCompleteTextViewExemplo"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:text="Selecione um país" />
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginTop="25dp">
+
+
+         <RadioGroup
+             android:id="@+id/radioGroupExemplo"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/rdButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Primeiro"/>
+            <RadioButton
+                android:id="@+id/rdButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Segundo"/>
+            <RadioButton
+                android:id="@+id/rdButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terceiro"/>
+
+         </RadioGroup>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:gravity="center">
+
+         <TextView
+             android:id="@+id/textViewRadio"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:text="Radio Button selecionado: "
+             android:textStyle="bold"
+             android:gravity="center"/>
+
+         <Button
+             android:id="@+id/botaoSelecao"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:text="Selecionar"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginTop="25dp">
+
+         <ToggleButton
+             android:id="@+id/toggleButtonExemplo"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:text="ToggleButton" />
+
+
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginTop="25dp">
+
+
+         <Spinner
+             android:id="@+id/spinner"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_weight="1" />
+
+      </LinearLayout>
+
+   </LinearLayout>
 </FrameLayout>

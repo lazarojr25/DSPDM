@@ -2,4 +2,5 @@
 <resources>
     <item name="kabum" type="id" />
     <item name="main_view" type="id" />
+    <item name="radioButtonExemplo" type="id" />
 </resources>

@@ -49,7 +49,11 @@ public class Fragment3 extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        mediaPlayer.stop();
+        if(mediaPlayer != null && mediaPlayer.isPlaying())
+        {
+            mediaPlayer.stop();
+        }
+
 
     }
 

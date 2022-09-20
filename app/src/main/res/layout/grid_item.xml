@@ -23,6 +23,7 @@
             android:scaleType="centerCrop"
             android:id="@+id/grid_image_1"
             android:src="@drawable/pad1"
+            android:layout_gravity="center"
             />
    </androidx.cardview.widget.CardView>
 

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         VPAdapter vpAdapter = new VPAdapter(this );
 
-        vpAdapter.addFragment(new Fragment1() , "Concluidos recentemente");
+        vpAdapter.addFragment(new Fragment1() , "Exemplos gerais");
         vpAdapter.addFragment(new Fragment2() , "Lista de tarefas");
         vpAdapter.addFragment(new Fragment3() , "Launchpad");
         viewPager2.setAdapter(vpAdapter);
